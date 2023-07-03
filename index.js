@@ -27,10 +27,16 @@ async function run() {
     await client.connect();
 
     const skillCollection = client.db("protfolio").collection("skills");
+    const projectCollection = client.db("protfolio").collection("project");
 
 
     app.get("/skills", async (req,res)=>{
         const result = await skillCollection.find().toArray();
+        console.log(result)
+        res.send(result)
+    })
+    app.get("/project", async (req,res)=>{
+        const result = await projectCollection.find().toArray();
         console.log(result)
         res.send(result)
     })
@@ -53,3 +59,4 @@ app.get('/', (req,res)=>{
 app.listen(port, ()=>{
     console.log(`server is running on port: ${port}`)
 })
+
